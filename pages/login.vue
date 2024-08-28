@@ -47,15 +47,15 @@
 
 <script setup lang="ts">
 
-import {signInWithPopup,GoogleAuthProvider} from 'firebase/auth'
+import {signInWithPopup,GoogleAuthProvider,getAuth} from 'firebase/auth'
 
-const auth = useFirebaseAuth()
+const auth = getAuth()
 const router = useRouter()
 const uname = ref()
 const upass = ref()
 
-function signInWithGoogle(){
- signInWithPopup(auth,new GoogleAuthProvider())
+async function signInWithGoogle(){
+  const userCred = await signInWithPopup(auth ,new GoogleAuthProvider())
 .then(()=> router.replace('/'))
 }
 
