@@ -63,6 +63,6 @@ function sendlogin() {
 
   window.alert('User name is :'+uname.value + '  and Password is : '+ upass.value)
 }
+
 </script>
 
-<style></style>

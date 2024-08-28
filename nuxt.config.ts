@@ -2,7 +2,8 @@
 export default defineNuxtConfig({
   devtools: { enabled: true },
 
-  modules: ['@nuxtjs/tailwindcss', "nuxt-vuefire"],
+  modules: ['@nuxtjs/tailwindcss', "nuxt-vuefire", "@pinia/nuxt"],
+
   ssr: false,
   compatibilityDate: '2024-07-30',
 
