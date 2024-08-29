@@ -1,21 +1,19 @@
 <template>
-    <div >
+    <div  class="bg-transparent text-blue-500 font-semibold   border border-blue-500  rounded px-2 py-2" >
         {{ user?.displayName }} {{ user?.email }} |
         {{ opennewuser.admin }}
     </div>
 
     <div>
-    <button @click="handleSignOut">Sign out</button>
+    <button @click="handleSignOut"  class="bg-transparent hover:bg-blue-500 text-blue-500 font-semibold hover:text-white  border border-blue-500 hover:border-transparent rounded px-2 py-2" >Sign out</button>
 </div>
-<div class="flex flex-col">
-    <nuxt-link to="/chiangrai-refer">refer to Chiang Rai Hospital</nuxt-link>
-    <nuxt-link to="/login">Log in</nuxt-link>
+<div class="flex flex-col" v-if=opennewuser.admin >
+    <nuxt-link to="/chiangrai-refer"  class="bg-transparent hover:bg-blue-500 text-blue-500 font-semibold hover:text-white  border border-blue-500 hover:border-transparent rounded px-2 py-2" >refer to Chiang Rai Hospital</nuxt-link>
     
 </div>
 
 
 <div class="w-full flex justify-center gap-2" v-if=opennewuser.admin >
-  
   <button @click="showuserdialog" class="bg-transparent hover:bg-blue-500 text-blue-500 font-semibold hover:text-white  border border-blue-500 hover:border-transparent rounded px-2 py-2" >Show new user dialog</button> 
   <button @click="hinduserdialog" class="bg-transparent hover:bg-blue-500 text-blue-500 font-semibold hover:text-white  border border-blue-500 hover:border-transparent rounded px-2 py-2" >Hind new user dialog</button>
 </div>
@@ -76,7 +74,8 @@ function showuserdialog() {
 function hinduserdialog(){
   opennewuser.hinddialoguser()
 }
-function handleSignOut(){
-    signOut(auth)
+async function handleSignOut(){
+  await  signOut(auth)
+    navigateTo('/login')
 }
 </script>
