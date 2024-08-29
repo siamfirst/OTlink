@@ -15,9 +15,10 @@
 </template>
 
 <script setup lang="ts">
-import { signOut } from 'firebase/auth'
+import { signOut ,getAuth} from 'firebase/auth'
 
-const auth = useFirebaseAuth()
+//const auth = useFirebaseAuth()
+const auth = getAuth()
 const user = useCurrentUser()
 function handleSignOut(){
     signOut(auth)

@@ -19,7 +19,7 @@ export default defineNuxtConfig({
     },
     auth: {
       enabled: true,
-      sessionCookie: false,
+      sessionCookie: true,
     }
   },
 
