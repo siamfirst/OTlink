@@ -1,10 +1,12 @@
 <template>
 
-  <div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
+  <div class="flex min-h-full flex-col justify-center px-6 py-6 lg:px-8">
     <div class="sm:mx-auto sm:w-full sm:max-w-sm">
       <img class="mx-auto h-10 w-auto" src="/fourty_OT.png" alt="Your Company">
       <h2 class="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">Refer back</h2>
     </div>
+    <nuxt-link to="/otworking">
+        back </nuxt-link>
     <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
       <form @submit.prevent="referback" class="space-y-6">
         <div>
@@ -96,6 +98,9 @@ const urlimg = ref()
 const Drnote = ref()
 const date = ref()
 const user = useCurrentUser().value?.email
+
+
+
 //name val
 const hospitalname = [
   {
@@ -194,6 +199,7 @@ async function referback() {
     Hospital:hospitalpt.value,
     Name:namept.value,
     OT_note:null,
+    OT_note_date:Timestamp.fromDate(new Date()),
     Surname:surnamept.value,
     Tel:ownertelpt.value,
     date_refer:Timestamp.fromDate(new Date()),
@@ -203,6 +209,21 @@ async function referback() {
  
   const OTRef= doc(collection(db,'pt'))
   await setDoc(OTRef,docData)
+  .then(() => {
+     namept.value = ''
+ surnamept.value = ''
+ hospitalpt.value = ''
+ dxpt.value = ''
+ ownertelpt.value = ''
+ urlimg.value = ''
+ Drnote.value = ''
+      
+      console.log('Successfully updated the record')
+      window.location.reload()
+    })
+    .catch(error => {
+      console.error('There was an error editing the record: ' + error)
+    })
   //date.value = new Date()
 //console.log('hospital name'+hospitalpt.value+'Dx : '+dxpt.value)
 //console.log('data is: '+namept.value+surnamept.value+hospitalpt.value+dxpt.value+
